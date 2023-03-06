@@ -1,7 +1,7 @@
 <script setup>
 </script>
 <template>
-    <div style="width: 100%; border-bottom: 1px solid black;">
+    <div class="container-fluid" style="border-bottom: 1px solid black;">
         <div class="row">
             <div class="col-1">
                 <div class="text-center mt-3 ms-5 mb-3">
