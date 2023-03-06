@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^9.17.2",
+    "firebase-admin": "^11.5.0",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
