@@ -1,4 +1,4 @@
-<script setup>
+<script >
 </script>
 <template>
     <div style="width: 100%; border-bottom: 1px solid black;">
