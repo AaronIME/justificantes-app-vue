@@ -1,7 +1,9 @@
 <script >
+import { RouterLink } from 'vue-router';
+
 </script>
 <template>
-    <div style="width: 100%; border-bottom: 1px solid black;">
+    <div class="container-fluid" style="border-bottom: 1px solid #D3D3D3">
         <div class="row">
             <div class="col-1">
                 <div class="text-center mt-3 ms-5 mb-3">
@@ -11,13 +13,19 @@
             <div class="col-10">
                     <ul class="nav justify-content-center mt-4">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Enviados</a>
+                            <router-link to="/" class="nav-link">Enviados</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Crear</a>
+                            <router-link to="/crear" class="nav-link">Crear</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Registro</a>
+                            <router-link to="/maestros" class="nav-link">Maestros</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/reporte" class="nav-link">Reporte</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/historial" class="nav-link">Historial</router-link>
                         </li>
                     </ul>
             </div>
