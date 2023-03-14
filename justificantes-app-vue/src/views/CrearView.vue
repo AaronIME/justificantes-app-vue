@@ -15,10 +15,7 @@ const descripcion = ref("");
 
 const crearReporte = async(asunto, fecha, horaInicio, horaFin, file, descripcion) => {
     obtenerMaestros()
-    await guardarReporte(asunto, fecha, descripcion)
-    //await guardarReporte(asunto, fecha, horaInicio, horaFin, descripcion)
-    //const clase = horaInicio+"-"+horaFin
-
+    await guardarReporte(asunto, fecha, horaInicio, horaFin, descripcion)
 }
 </script>
 <template>

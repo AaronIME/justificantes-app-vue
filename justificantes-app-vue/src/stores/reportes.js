@@ -7,7 +7,7 @@ export const useReports = defineStore("reportes", {
         reportes: []
     }),
     actions: {
-        async guardarReporte(asunto, fecha, descripcion) {
+        async guardarReporte(asunto, fecha, horaInicio, horaFin, descripcion) {
             try {
                 console.log(asunto);
                 console.log(fecha);
@@ -15,10 +15,10 @@ export const useReports = defineStore("reportes", {
                 console.log(horaFin);
                 console.log(descripcion);
                 await set(storageRef(database, 'reportes/'), {
-                    asunto: asunto,
-                    fecha: fecha,
-                    descripcion: descripcion,
-                    clase: horaInicio
+                    Asunto: asunto,
+                    Fecha: fecha,
+                    Descripcion: descripcion,
+                    Clase: horaInicio+"-"+horaFin
                 });
             } catch (error) {
                 console.log(error);
