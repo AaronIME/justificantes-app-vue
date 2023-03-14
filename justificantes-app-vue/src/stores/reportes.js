@@ -1,18 +1,25 @@
 import { defineStore } from "pinia";
-import { getStorage, createReporte } from "firebase/storage";
 import { storage, database } from "../firebase.js";
 import { ref as storageRef, set, get, remove } from "firebase/database";
 
-export const useReports = defineStore("usuarios", {
+export const useReports = defineStore("reportes", {
     state: () => ({
         reportes: []
     }),
     actions: {
-        async registrarReporte(email, password) {
+        async guardarReporte(asunto, fecha, descripcion) {
             try {
-                const user = await createUserWithEmailAndPassword(auth, email, password);
-                return user;
-
+                console.log(asunto);
+                console.log(fecha);
+                console.log(horaInicio);
+                console.log(horaFin);
+                console.log(descripcion);
+                await set(storageRef(database, 'reportes/'), {
+                    asunto: asunto,
+                    fecha: fecha,
+                    descripcion: descripcion,
+                    clase: horaInicio
+                });
             } catch (error) {
                 console.log(error);
             }

@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import {useReports} from '../stores/reportes.js'
+import {useUserStore} from '../stores/usuarios.js'
 
-const {registrarReporte } = useReports();
+const {guardarReporte } = useReports();
+const {obtenerMaestros} = useUserStore()
 
 const asunto = ref("");
 const fecha = ref("");
@@ -11,11 +13,11 @@ const horaFin = ref("");
 const file = ref("");
 const descripcion = ref("");
 
-const crearReporte = async(usuario, contraseña, nombre) => {
-    const correo = `${usuario}@justificantes.com`
-    const maestro = await registrarMaestro(correo, contraseña)
-    const idMaestro = maestro.user.uid
-    await guardarDatosMaestro(idMaestro, nombre, usuario)
+const crearReporte = async(asunto, fecha, horaInicio, horaFin, file, descripcion) => {
+    obtenerMaestros()
+    await guardarReporte(asunto, fecha, descripcion)
+    //await guardarReporte(asunto, fecha, horaInicio, horaFin, descripcion)
+    //const clase = horaInicio+"-"+horaFin
 
 }
 </script>
@@ -61,7 +63,7 @@ const crearReporte = async(usuario, contraseña, nombre) => {
 
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input class="form-control" type="file" id="formFileMultiple" multiple >
             </div>
 
             <div class="row">
