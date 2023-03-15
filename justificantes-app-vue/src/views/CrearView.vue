@@ -3,24 +3,29 @@ import { ref } from 'vue';
 import {useReports} from '../stores/reportes.js'
 import {useUserStore} from '../stores/usuarios.js'
 
-const {guardarReporte } = useReports();
+const {guardarReporte, guardarArchivos } = useReports();
 const {obtenerMaestros} = useUserStore()
 
 const asunto = ref("");
 const fecha = ref("");
 const horaInicio = ref("");
 const horaFin = ref("");
-const file = ref("");
+const file = ref([]);
 const descripcion = ref("");
 
-const crearReporte = async(asunto, fecha, horaInicio, horaFin, file, descripcion) => {
+const crearReporte = async(asunto, fecha, horaInicio, horaFin, descripcion) => {
     obtenerMaestros()
     await guardarReporte(asunto, fecha, horaInicio, horaFin, descripcion)
+    function previewFiles(event){
+        file.value = event.target.files;
+    }
+    await guardarArchivos(file)
 }
+
 </script>
 <template>
     <div class="container">
-        <form @submit.prevent="crearReporte(asunto, fecha, horaInicio, horaFin, file, descripcion)">
+        <form @submit.prevent="crearReporte(asunto, fecha, horaInicio, horaFin, descripcion)">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Asunto:</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Asunsto" v-model="asunto">
@@ -60,7 +65,7 @@ const crearReporte = async(asunto, fecha, horaInicio, horaFin, file, descripcion
 
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple >
+                <input class="form-control" type="file" id="formFileMultiple" multiple  @change="previewFiles">
             </div>
 
             <div class="row">

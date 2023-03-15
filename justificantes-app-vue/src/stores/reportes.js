@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { storage, database } from "../firebase.js";
 import { ref as storageRef, set, get, remove } from "firebase/database";
+import { ref as storageRefr } from "firebase/storage";
 
 export const useReports = defineStore("reportes", {
     state: () => ({
@@ -18,7 +19,17 @@ export const useReports = defineStore("reportes", {
                     Asunto: asunto,
                     Fecha: fecha,
                     Descripcion: descripcion,
-                    Clase: horaInicio+"-"+horaFin
+                    HoraInicio: horaInicio,
+                    HoraFin: horaFin
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async guardarArchivos(file) {
+            try {
+                uploadBytes(storageRef, file).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
                 });
             } catch (error) {
                 console.log(error);
